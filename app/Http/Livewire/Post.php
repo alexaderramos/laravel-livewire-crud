@@ -13,12 +13,9 @@ class Post extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $title;
-    public $content;
 
-    protected $rules = [
-        'title' => 'required|min:10|max:20',
-        'content' => 'required',
+    protected $listeners = [
+        'refreshParent'=>'$refresh'
     ];
 
     public function render()
@@ -28,34 +25,6 @@ class Post extends Component
         ]);
     }
 
-    /**
-     * @param $propertyName
-     * @throws \Illuminate\Validation\ValidationException
-     * Realtime Validation
-     */
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
 
-    public function save()
-    {
-//        $this->validate();
-        $data = [
-            'title' => $this->title,
-            'content' => $this->content,
-            'user_id' => Auth::id()
-        ];
-
-        MyPost::create($data);
-
-        $this->cleanVars();
-    }
-
-    private function cleanVars()
-    {
-        $this->title = null;
-        $this->content = null;
-    }
 
 }
