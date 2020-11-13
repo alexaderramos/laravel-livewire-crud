@@ -1,4 +1,5 @@
 <div>
+    Selected {{$modelId}}
     <label for="title">Title</label>
     <input wire:model="title" class="form-control" type="text" id="title">
     @if($errors->has('title'))
