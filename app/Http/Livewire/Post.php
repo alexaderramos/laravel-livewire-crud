@@ -5,9 +5,14 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Post as MyPost;
+use Livewire\WithPagination;
 
 class Post extends Component
 {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public $title;
     public $content;
 
@@ -18,7 +23,9 @@ class Post extends Component
 
     public function render()
     {
-        return view('livewire.post');
+        return view('livewire.post', [
+            'posts' => MyPost::where('user_id', Auth::id())->paginate(3)
+        ]);
     }
 
     /**
