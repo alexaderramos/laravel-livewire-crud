@@ -15,3 +15,13 @@
     </div>
 </div>
 @endsection
+
+@once
+    @push('scripts')
+        <script>
+            window.addEventListener('closeModal', event => {
+                $('#modal-create').modal('hide')
+            })
+        </script>
+    @endpush
+@endonce

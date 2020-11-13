@@ -43,7 +43,7 @@ class PostForm extends Component
         MyPost::create($data);
 
         $this->emit('refreshParent');
-
+        $this->dispatchBrowserEvent('closeModal');
         $this->cleanVars();
     }
 
